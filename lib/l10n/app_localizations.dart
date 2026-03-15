@@ -309,6 +309,12 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'このアプリを つくるのに つかったもの'**
   String get settingsLicensesDescription;
+
+  /// Heading value with degree symbol
+  ///
+  /// In ja, this message translates to:
+  /// **'{degrees}°'**
+  String headingDegrees(String degrees);
 }
 
 class _AppLocalizationsDelegate

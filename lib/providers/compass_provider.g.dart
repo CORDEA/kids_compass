@@ -40,4 +40,4 @@ final class CompassHeadingProvider
   }
 }
 
-String _$compassHeadingHash() => r'730cf9beb7722818e819ac7111388b4ebad49229';
+String _$compassHeadingHash() => r'670fd6f6ba54bb9f07cbe67af190ca6e83fcdc51';

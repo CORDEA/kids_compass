@@ -89,4 +89,7 @@ final class AppStrings {
 
   String get settingsLicensesDescription =>
       _localizations.settingsLicensesDescription;
+
+  String headingDegrees(double heading) =>
+      _localizations.headingDegrees(heading.toStringAsFixed(0));
 }

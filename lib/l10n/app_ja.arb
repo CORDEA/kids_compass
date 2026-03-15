@@ -35,5 +35,14 @@
   "settingsSectionAppInfoKanji": "アプリ情報",
   "settingsLicensesLabelHiragana": "つかっている ツール",
   "settingsLicensesLabelKanji": "OSSライセンス",
-  "settingsLicensesDescription": "このアプリを つくるのに つかったもの"
+  "settingsLicensesDescription": "このアプリを つくるのに つかったもの",
+  "headingDegrees": "{degrees}°",
+  "@headingDegrees": {
+    "description": "Heading value with degree symbol",
+    "placeholders": {
+      "degrees": {
+        "type": "String"
+      }
+    }
+  }
 }

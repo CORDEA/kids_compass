@@ -116,4 +116,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settingsLicensesDescription => 'このアプリを つくるのに つかったもの';
+
+  @override
+  String headingDegrees(String degrees) {
+    return '$degrees°';
+  }
 }
