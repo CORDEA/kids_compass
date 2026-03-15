@@ -7,14 +7,11 @@ final class AppStrings {
   const AppStrings._({
     required AppLocalizations localizations,
     required bool isHiragana,
-  })  : _localizations = localizations,
-        _isHiragana = isHiragana;
+  }) : _localizations = localizations,
+       _isHiragana = isHiragana;
 
   factory AppStrings.of(AppLocalizations localizations, bool isHiragana) {
-    return AppStrings._(
-      localizations: localizations,
-      isHiragana: isHiragana,
-    );
+    return AppStrings._(localizations: localizations, isHiragana: isHiragana);
   }
 
   final AppLocalizations _localizations;

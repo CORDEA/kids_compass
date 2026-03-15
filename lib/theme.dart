@@ -10,10 +10,7 @@ abstract final class AppTheme {
     final colorScheme = ColorScheme.fromSeed(
       seedColor: _primary,
       surface: _surface,
-    ).copyWith(
-      tertiary: _tertiary,
-      tertiaryContainer: const Color(0xFFFFDAD6),
-    );
+    ).copyWith(tertiary: _tertiary, tertiaryContainer: const Color(0xFFFFDAD6));
 
     final textTheme = GoogleFonts.zenMaruGothicTextTheme();
 
