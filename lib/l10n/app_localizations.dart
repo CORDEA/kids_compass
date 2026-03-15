@@ -93,6 +93,222 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('ja')];
+
+  /// No description provided for @appTitle.
+  ///
+  /// In ja, this message translates to:
+  /// **'コンパス'**
+  String get appTitle;
+
+  /// No description provided for @directionNorthHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'きた'**
+  String get directionNorthHiragana;
+
+  /// No description provided for @directionNorthKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'北'**
+  String get directionNorthKanji;
+
+  /// No description provided for @directionEastHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'ひがし'**
+  String get directionEastHiragana;
+
+  /// No description provided for @directionEastKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'東'**
+  String get directionEastKanji;
+
+  /// No description provided for @directionSouthHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'みなみ'**
+  String get directionSouthHiragana;
+
+  /// No description provided for @directionSouthKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'南'**
+  String get directionSouthKanji;
+
+  /// No description provided for @directionWestHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'にし'**
+  String get directionWestHiragana;
+
+  /// No description provided for @directionWestKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'西'**
+  String get directionWestKanji;
+
+  /// No description provided for @directionNorthEastHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'ほくとう'**
+  String get directionNorthEastHiragana;
+
+  /// No description provided for @directionNorthEastKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'北東'**
+  String get directionNorthEastKanji;
+
+  /// No description provided for @directionNorthWestHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'ほくせい'**
+  String get directionNorthWestHiragana;
+
+  /// No description provided for @directionNorthWestKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'北西'**
+  String get directionNorthWestKanji;
+
+  /// No description provided for @directionSouthEastHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'なんとう'**
+  String get directionSouthEastHiragana;
+
+  /// No description provided for @directionSouthEastKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'南東'**
+  String get directionSouthEastKanji;
+
+  /// No description provided for @directionSouthWestHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'なんせい'**
+  String get directionSouthWestHiragana;
+
+  /// No description provided for @directionSouthWestKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'南西'**
+  String get directionSouthWestKanji;
+
+  /// No description provided for @modePersonLabelHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'じぶんの むき'**
+  String get modePersonLabelHiragana;
+
+  /// No description provided for @modePersonLabelKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'自分の向き'**
+  String get modePersonLabelKanji;
+
+  /// No description provided for @modeMapLabelHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'ちずと あわせる'**
+  String get modeMapLabelHiragana;
+
+  /// No description provided for @modeMapLabelKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'地図と合わせる'**
+  String get modeMapLabelKanji;
+
+  /// No description provided for @settingsTitleHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'せってい'**
+  String get settingsTitleHiragana;
+
+  /// No description provided for @settingsTitleKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'設定'**
+  String get settingsTitleKanji;
+
+  /// No description provided for @settingsSectionGeneralHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'いっぱん'**
+  String get settingsSectionGeneralHiragana;
+
+  /// No description provided for @settingsSectionGeneralKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'一般'**
+  String get settingsSectionGeneralKanji;
+
+  /// No description provided for @settingsLanguageLabelHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'ことば'**
+  String get settingsLanguageLabelHiragana;
+
+  /// No description provided for @settingsLanguageLabelKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'言葉の設定'**
+  String get settingsLanguageLabelKanji;
+
+  /// No description provided for @settingsLanguageDescription.
+  ///
+  /// In ja, this message translates to:
+  /// **'「ひらがな」か「漢字」を えらべるよ'**
+  String get settingsLanguageDescription;
+
+  /// No description provided for @settingsLocationLabelHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'ばしょの じょうほう'**
+  String get settingsLocationLabelHiragana;
+
+  /// No description provided for @settingsLocationLabelKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'位置情報の利用'**
+  String get settingsLocationLabelKanji;
+
+  /// No description provided for @settingsLocationDescription.
+  ///
+  /// In ja, this message translates to:
+  /// **'ON にすると、コンパスが もっと ただしく なるよ。OFF でも つかえるから あんしんしてね。'**
+  String get settingsLocationDescription;
+
+  /// No description provided for @settingsSectionAppInfoHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'アプリの じょうほう'**
+  String get settingsSectionAppInfoHiragana;
+
+  /// No description provided for @settingsSectionAppInfoKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'アプリ情報'**
+  String get settingsSectionAppInfoKanji;
+
+  /// No description provided for @settingsLicensesLabelHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'つかっている ツール'**
+  String get settingsLicensesLabelHiragana;
+
+  /// No description provided for @settingsLicensesLabelKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'OSSライセンス'**
+  String get settingsLicensesLabelKanji;
+
+  /// No description provided for @settingsLicensesDescription.
+  ///
+  /// In ja, this message translates to:
+  /// **'このアプリを つくるのに つかったもの'**
+  String get settingsLicensesDescription;
 }
 
 class _AppLocalizationsDelegate
