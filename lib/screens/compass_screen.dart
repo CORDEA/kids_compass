@@ -8,6 +8,7 @@ import 'package:compass/providers/compass_provider.dart';
 import 'package:compass/providers/settings_provider.dart';
 import 'package:compass/screens/settings_screen.dart';
 import 'package:compass/widgets/compass_widget.dart';
+import 'package:compass/widgets/segmented_control.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -234,7 +235,6 @@ class _DirectionCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Container(
@@ -294,6 +294,8 @@ class _DirectionCard extends ConsumerWidget {
                       children: [
                         Consumer(
                           builder: (context, ref, child) {
+                            final colors = Theme.of(context).colorScheme;
+                            final textTheme = Theme.of(context).textTheme;
                             final direction = ref.watch(
                               cardinalDirectionProvider,
                             );
@@ -309,6 +311,8 @@ class _DirectionCard extends ConsumerWidget {
                         const SizedBox(height: 2),
                         Consumer(
                           builder: (context, ref, child) {
+                            final colors = Theme.of(context).colorScheme;
+                            final textTheme = Theme.of(context).textTheme;
                             final heading =
                                 ref.watch(compassHeadingProvider).value ?? 0.0;
                             return Text(
@@ -339,109 +343,24 @@ class _ModeToggle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colors = Theme.of(context).colorScheme;
+    final isMapMode = ref.watch(settingsProvider.select((s) => s.isMapMode));
     return Padding(
       padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
-      child: Container(
-        padding: const EdgeInsets.all(6),
-        decoration: ShapeDecoration(
-          color: colors.surfaceContainerLow,
-          shape: const StadiumBorder(),
-        ),
-        child: Consumer(
-          builder: (context, ref, child) {
-            final isMapMode = ref.watch(
-              settingsProvider.select((s) => s.isMapMode),
-            );
-            return Row(
-              children: [
-                _ToggleSegment(
-                  icon: Icons.directions_walk,
-                  label: strings.modePersonLabel,
-                  selected: !isMapMode,
-                  onTap: () =>
-                      ref.read(settingsProvider.notifier).setIsMapMode(false),
-                ),
-                _ToggleSegment(
-                  icon: Icons.map_outlined,
-                  label: strings.modeMapLabel,
-                  selected: isMapMode,
-                  onTap: () =>
-                      ref.read(settingsProvider.notifier).setIsMapMode(true),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class _ToggleSegment extends StatelessWidget {
-  const _ToggleSegment({
-    required this.icon,
-    required this.label,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final IconData icon;
-  final String label;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-          decoration: ShapeDecoration(
-            color: selected
-                ? colors.surfaceContainerLowest
-                : Colors.transparent,
-            shape: const StadiumBorder(),
-            shadows: selected
-                ? [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(20),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ]
-                : null,
+      child: AppSegmentedControl(
+        segments: [
+          AppSegment(
+            icon: Icons.directions_walk,
+            label: strings.modePersonLabel,
+            selected: !isMapMode,
+            onTap: () => ref.read(settingsProvider.notifier).setIsMapMode(false),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 18,
-                color: selected
-                    ? colors.onPrimaryContainer
-                    : colors.onSurfaceVariant,
-              ),
-              const SizedBox(width: 6),
-              Flexible(
-                child: Text(
-                  label,
-                  style: textTheme.titleSmall?.copyWith(
-                    color: selected
-                        ? colors.onPrimaryContainer
-                        : colors.onSurfaceVariant,
-                    fontWeight: selected ? FontWeight.bold : FontWeight.normal,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
+          AppSegment(
+            icon: Icons.map_outlined,
+            label: strings.modeMapLabel,
+            selected: isMapMode,
+            onTap: () => ref.read(settingsProvider.notifier).setIsMapMode(true),
           ),
-        ),
+        ],
       ),
     );
   }

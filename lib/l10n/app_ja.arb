@@ -28,6 +28,8 @@
   "settingsLanguageLabelHiragana": "ことば",
   "settingsLanguageLabelKanji": "言葉の設定",
   "settingsLanguageDescription": "「ひらがな」か「漢字」を えらべるよ",
+  "langOptionHiragana": "ひらがな",
+  "langOptionKanji": "漢字",
   "settingsLocationLabelHiragana": "ばしょの じょうほう",
   "settingsLocationLabelKanji": "位置情報の利用",
   "settingsLocationDescription": "ON にすると、コンパスが もっと ただしく なるよ。OFF でも つかえるから あんしんしてね。",
@@ -36,6 +38,18 @@
   "settingsLicensesLabelHiragana": "つかっている ツール",
   "settingsLicensesLabelKanji": "OSSライセンス",
   "settingsLicensesDescription": "このアプリを つくるのに つかったもの",
+  "appVersion": "{appName} v{version}",
+  "@appVersion": {
+    "description": "App name and version label shown at the bottom of the settings screen",
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "headingDegrees": "{degrees}°",
   "@headingDegrees": {
     "description": "Heading value with degree symbol",

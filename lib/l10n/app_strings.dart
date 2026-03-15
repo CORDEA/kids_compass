@@ -72,6 +72,10 @@ final class AppStrings {
   String get settingsLanguageDescription =>
       _localizations.settingsLanguageDescription;
 
+  String get langOptionHiragana => _localizations.langOptionHiragana;
+
+  String get langOptionKanji => _localizations.langOptionKanji;
+
   String get settingsLocationLabel => _isHiragana
       ? _localizations.settingsLocationLabelHiragana
       : _localizations.settingsLocationLabelKanji;
@@ -92,4 +96,7 @@ final class AppStrings {
 
   String headingDegrees(double heading) =>
       _localizations.headingDegrees(heading.toStringAsFixed(0));
+
+  String appVersion(String appName, String version) =>
+      _localizations.appVersion(appName, version);
 }

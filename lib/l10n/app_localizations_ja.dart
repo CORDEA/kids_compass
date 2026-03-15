@@ -93,6 +93,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsLanguageDescription => '「ひらがな」か「漢字」を えらべるよ';
 
   @override
+  String get langOptionHiragana => 'ひらがな';
+
+  @override
+  String get langOptionKanji => '漢字';
+
+  @override
   String get settingsLocationLabelHiragana => 'ばしょの じょうほう';
 
   @override
@@ -116,6 +122,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settingsLicensesDescription => 'このアプリを つくるのに つかったもの';
+
+  @override
+  String appVersion(String appName, String version) {
+    return '$appName v$version';
+  }
 
   @override
   String headingDegrees(String degrees) {

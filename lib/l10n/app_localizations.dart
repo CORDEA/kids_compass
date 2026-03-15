@@ -262,6 +262,18 @@ abstract class AppLocalizations {
   /// **'「ひらがな」か「漢字」を えらべるよ'**
   String get settingsLanguageDescription;
 
+  /// No description provided for @langOptionHiragana.
+  ///
+  /// In ja, this message translates to:
+  /// **'ひらがな'**
+  String get langOptionHiragana;
+
+  /// No description provided for @langOptionKanji.
+  ///
+  /// In ja, this message translates to:
+  /// **'漢字'**
+  String get langOptionKanji;
+
   /// No description provided for @settingsLocationLabelHiragana.
   ///
   /// In ja, this message translates to:
@@ -309,6 +321,12 @@ abstract class AppLocalizations {
   /// In ja, this message translates to:
   /// **'このアプリを つくるのに つかったもの'**
   String get settingsLicensesDescription;
+
+  /// App name and version label shown at the bottom of the settings screen
+  ///
+  /// In ja, this message translates to:
+  /// **'{appName} v{version}'**
+  String appVersion(String appName, String version);
 
   /// Heading value with degree symbol
   ///
