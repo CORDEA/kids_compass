@@ -18,7 +18,7 @@ jobs:
         with:
           channel: stable
       - run: echo -n ${{ secrets.KEYSTORE }} | base64 -d > android/release.keystore
-      - run: flutter build appbundle --release
+      - run: flutter build appbundle --release --obfuscate --split-debug-info=build/debug-info --build-number=${{ github.run_number }}
         env:
           ORG_GRADLE_PROJECT_storePassword: ${{ secrets.STORE_PASSWORD }}
           ORG_GRADLE_PROJECT_keyPassword: ${{ secrets.KEY_PASSWORD }}
@@ -27,3 +27,7 @@ jobs:
         with:
           name: aab
           path: build/app/outputs/bundle/release/app-release.aab
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: debug-info
+          path: build/debug-info
