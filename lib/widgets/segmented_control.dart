@@ -14,14 +14,87 @@ class AppSegmentedControl extends StatelessWidget {
         color: colors.surfaceContainerLow,
         shape: const StadiumBorder(),
       ),
-      child: Row(children: segments),
+      child: Row(
+        children: segments
+            .map((s) => Expanded(child: _Segment(segment: s)))
+            .toList(),
+      ),
     );
   }
 }
 
-class AppSegment extends StatelessWidget {
+class _Segment extends StatelessWidget {
+  const _Segment({required this.segment});
+
+  final AppSegment segment;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    final color = segment.selected
+        ? colors.onPrimaryContainer
+        : colors.onSurfaceVariant;
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Container(
+            decoration: ShapeDecoration(
+              color: segment.selected
+                  ? colors.surfaceContainerLowest
+                  : Colors.transparent,
+              shape: const StadiumBorder(),
+              shadows: segment.selected
+                  ? [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(20),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ]
+                  : null,
+            ),
+          ),
+        ),
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: segment.onTap,
+            customBorder: const StadiumBorder(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (segment.icon != null) ...[
+                    Icon(segment.icon, size: 18, color: color),
+                    const SizedBox(width: 6),
+                  ],
+                  Flexible(
+                    child: Text(
+                      segment.label,
+                      style: textTheme.titleSmall?.copyWith(
+                        color: color,
+                        fontWeight: segment.selected
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class AppSegment {
   const AppSegment({
-    super.key,
     this.icon,
     required this.label,
     required this.selected,
@@ -32,56 +105,4 @@ class AppSegment extends StatelessWidget {
   final String label;
   final bool selected;
   final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          decoration: ShapeDecoration(
-            color: selected ? colors.surfaceContainerLowest : Colors.transparent,
-            shape: const StadiumBorder(),
-            shadows: selected
-                ? [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(20),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ]
-                : null,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (icon != null) ...[
-                Icon(
-                  icon,
-                  size: 18,
-                  color: selected ? colors.onPrimaryContainer : colors.onSurfaceVariant,
-                ),
-                const SizedBox(width: 6),
-              ],
-              Flexible(
-                child: Text(
-                  label,
-                  style: textTheme.titleSmall?.copyWith(
-                    color: selected ? colors.onPrimaryContainer : colors.onSurfaceVariant,
-                    fontWeight: selected ? FontWeight.bold : FontWeight.normal,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }
