@@ -1,23 +1,20 @@
 import 'package:compass/l10n/app_localizations.dart';
 import 'package:compass/l10n/app_strings.dart';
+import 'package:compass/providers/location_permission_provider.dart';
 import 'package:compass/providers/package_info_provider.dart';
 import 'package:compass/providers/settings_provider.dart';
 import 'package:compass/widgets/segmented_control.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isHiragana = ref.watch(
-      settingsProvider.select((s) => s.isHiragana),
-    );
-    final strings = AppStrings.of(
-      AppLocalizations.of(context)!,
-      isHiragana,
-    );
+    final isHiragana = ref.watch(settingsProvider.select((s) => s.isHiragana));
+    final strings = AppStrings.of(AppLocalizations.of(context)!, isHiragana);
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -45,9 +42,15 @@ class SettingsScreen extends ConsumerWidget {
                     const SizedBox(height: 16),
                     _LocationCard(
                       strings: strings,
-                      onEnable: () => ref
-                          .read(settingsProvider.notifier)
-                          .setLocationEnabled(true),
+                      onEnable: () async {
+                        final status = await Permission.locationWhenInUse
+                            .request();
+                        if (status.isGranted) {
+                          ref.invalidate(locationPermissionProvider);
+                        } else if (status.isPermanentlyDenied) {
+                          await openAppSettings();
+                        }
+                      },
                     ),
                     const SizedBox(height: 32),
                     _SectionLabel(label: strings.settingsSectionAppInfo),
@@ -172,13 +175,10 @@ class _LanguageCard extends StatelessWidget {
 }
 
 class _LocationCard extends StatelessWidget {
-  const _LocationCard({
-    required this.strings,
-    required this.onEnable,
-  });
+  const _LocationCard({required this.strings, required this.onEnable});
 
   final AppStrings strings;
-  final VoidCallback onEnable;
+  final Future<void> Function() onEnable;
 
   @override
   Widget build(BuildContext context) {
@@ -237,10 +237,9 @@ class _LocationCard extends StatelessWidget {
           ),
           Consumer(
             builder: (context, ref, child) {
-              final locationEnabled = ref.watch(
-                settingsProvider.select((s) => s.locationEnabled),
-              );
-              if (!locationEnabled) {
+              final locationEnabled =
+                  ref.watch(locationPermissionProvider).value ?? false;
+              if (locationEnabled) {
                 return const SizedBox.shrink();
               }
               return Padding(
@@ -273,10 +272,7 @@ class _LocationCard extends StatelessWidget {
 }
 
 class _LicensesCard extends StatelessWidget {
-  const _LicensesCard({
-    required this.strings,
-    required this.onTap,
-  });
+  const _LicensesCard({required this.strings, required this.onTap});
 
   final AppStrings strings;
   final VoidCallback onTap;

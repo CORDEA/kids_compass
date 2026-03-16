@@ -10,7 +10,6 @@ abstract class SettingsState with _$SettingsState {
   const factory SettingsState({
     @Default(true) bool isHiragana,
     @Default(false) bool isMapMode,
-    @Default(false) bool locationEnabled,
   }) = _SettingsState;
 }
 
@@ -24,7 +23,6 @@ class Settings extends _$Settings {
     return SettingsState(
       isHiragana: preferencesRepository.isHiragana,
       isMapMode: preferencesRepository.isMapMode,
-      locationEnabled: preferencesRepository.locationEnabled,
     );
   }
 
@@ -38,8 +36,5 @@ class Settings extends _$Settings {
     state = state.copyWith(isMapMode: value);
   }
 
-  Future<void> setLocationEnabled(bool value) async {
-    await ref.read(preferencesRepositoryProvider).setLocationEnabled(value);
-    state = state.copyWith(locationEnabled: value);
-  }
+
 }
