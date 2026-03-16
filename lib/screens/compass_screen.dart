@@ -20,7 +20,6 @@ class CompassScreen extends ConsumerWidget {
     final isHiragana = ref.watch(settingsProvider.select((s) => s.isHiragana));
     final strings = AppStrings.of(AppLocalizations.of(context)!, isHiragana);
     final colors = Theme.of(context).colorScheme;
-
     return Scaffold(
       backgroundColor: colors.surface,
       body: Stack(
@@ -42,27 +41,38 @@ class CompassScreen extends ConsumerWidget {
             ),
           ),
           SafeArea(
-            child: Column(
-              children: [
-                _TopBar(
-                  onSettings: () => Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (_) => const SettingsScreen(),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: _TopBar(
+                    onSettings: () => Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (_) => const SettingsScreen(),
+                      ),
                     ),
                   ),
                 ),
-                Expanded(
+                SliverFillRemaining(
+                  hasScrollBody: false,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _CompassArea(strings: strings),
-                      const SizedBox(height: 32),
-                      _DirectionCard(strings: strings),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(height: 96),
+                            _CompassArea(strings: strings),
+                            const SizedBox(height: 32),
+                            _DirectionCard(strings: strings),
+                            const SizedBox(height: 96),
+                          ],
+                        ),
+                      ),
+                      _ModeToggle(strings: strings),
                     ],
                   ),
                 ),
-                _ModeToggle(strings: strings),
               ],
             ),
           ),
@@ -352,7 +362,8 @@ class _ModeToggle extends ConsumerWidget {
             icon: Icons.directions_walk,
             label: strings.modePersonLabel,
             selected: !isMapMode,
-            onTap: () => ref.read(settingsProvider.notifier).setIsMapMode(false),
+            onTap: () =>
+                ref.read(settingsProvider.notifier).setIsMapMode(false),
           ),
           AppSegment(
             icon: Icons.map_outlined,
