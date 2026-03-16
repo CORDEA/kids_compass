@@ -17,13 +17,11 @@ abstract class SettingsState with _$SettingsState {
 class Settings extends _$Settings {
   @override
   SettingsState build() {
-    final preferencesRepository = ref.watch(
-      preferencesRepositoryProvider,
-    );
-    return SettingsState(
-      isHiragana: preferencesRepository.isHiragana,
-      isMapMode: preferencesRepository.isMapMode,
-    );
+    final repository = ref.watch(preferencesRepositoryProvider);
+    Future.wait([repository.isHiragana, repository.isMapMode]).then((values) {
+      state = SettingsState(isHiragana: values[0], isMapMode: values[1]);
+    });
+    return const SettingsState();
   }
 
   Future<void> setIsHiragana(bool value) async {
@@ -35,6 +33,4 @@ class Settings extends _$Settings {
     await ref.read(preferencesRepositoryProvider).setIsMapMode(value);
     state = state.copyWith(isMapMode: value);
   }
-
-
 }

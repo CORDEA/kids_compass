@@ -357,7 +357,10 @@ class _AppVersionLabel extends ConsumerWidget {
     final info = ref.watch(packageInfoProvider);
     return Center(
       child: Text(
-        strings.appVersion(info.appName, info.version),
+        strings.appVersion(
+          info.value?.appName ?? '',
+          info.value?.version ?? '',
+        ),
         style: textTheme.labelSmall?.copyWith(
           color: colors.onSurfaceVariant.withAlpha(100),
           letterSpacing: 1.5,

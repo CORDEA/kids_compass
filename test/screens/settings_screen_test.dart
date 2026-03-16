@@ -6,16 +6,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../setup.dart';
 
 void main() {
-  late SharedPreferences prefs;
-
-  setUp(() async {
-    prefs = await setupMockPreferences();
+  setUp(() {
+    SharedPreferences.setMockInitialValues({});
   });
 
   testWidgets('shows settings title', (tester) async {
-    await tester.pumpWidget(
-      buildTestApp(child: const SettingsScreen(), prefs: prefs),
-    );
+    await tester.pumpWidget(buildTestApp(child: const SettingsScreen()));
     await tester.pump();
 
     // Default isHiragana = true
@@ -23,18 +19,14 @@ void main() {
   });
 
   testWidgets('shows back button', (tester) async {
-    await tester.pumpWidget(
-      buildTestApp(child: const SettingsScreen(), prefs: prefs),
-    );
+    await tester.pumpWidget(buildTestApp(child: const SettingsScreen()));
     await tester.pump();
 
     expect(find.byIcon(Icons.arrow_back), findsOneWidget);
   });
 
   testWidgets('shows language toggle options', (tester) async {
-    await tester.pumpWidget(
-      buildTestApp(child: const SettingsScreen(), prefs: prefs),
-    );
+    await tester.pumpWidget(buildTestApp(child: const SettingsScreen()));
     await tester.pump();
 
     expect(find.text('ひらがな'), findsOneWidget);
@@ -42,9 +34,7 @@ void main() {
   });
 
   testWidgets('tapping 漢字 switches labels to kanji', (tester) async {
-    await tester.pumpWidget(
-      buildTestApp(child: const SettingsScreen(), prefs: prefs),
-    );
+    await tester.pumpWidget(buildTestApp(child: const SettingsScreen()));
     await tester.pump();
 
     await tester.tap(find.text('漢字'));
@@ -54,9 +44,7 @@ void main() {
   });
 
   testWidgets('shows location and licenses items', (tester) async {
-    await tester.pumpWidget(
-      buildTestApp(child: const SettingsScreen(), prefs: prefs),
-    );
+    await tester.pumpWidget(buildTestApp(child: const SettingsScreen()));
     await tester.pump();
 
     expect(find.byIcon(Icons.location_on), findsOneWidget);

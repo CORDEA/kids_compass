@@ -1,31 +1,33 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract interface class PreferencesRepository {
-  bool get isHiragana;
-  bool get isMapMode;
+  Future<bool> get isHiragana;
+  Future<bool> get isMapMode;
   Future<void> setIsHiragana(bool value);
   Future<void> setIsMapMode(bool value);
 }
 
 final class SharedPreferencesRepository implements PreferencesRepository {
-  const SharedPreferencesRepository(this._preferences);
+  const SharedPreferencesRepository();
 
   static const String _keyIsHiragana = 'isHiragana';
   static const String _keyIsMapMode = 'isMapMode';
 
-  final SharedPreferences _preferences;
+  Future<SharedPreferences> get _preferences => SharedPreferences.getInstance();
 
   @override
-  bool get isHiragana => _preferences.getBool(_keyIsHiragana) ?? true;
+  Future<bool> get isHiragana =>
+      _preferences.then((prefs) => prefs.getBool(_keyIsHiragana) ?? true);
 
   @override
-  bool get isMapMode => _preferences.getBool(_keyIsMapMode) ?? false;
+  Future<bool> get isMapMode =>
+      _preferences.then((prefs) => prefs.getBool(_keyIsMapMode) ?? false);
 
   @override
   Future<void> setIsHiragana(bool value) =>
-      _preferences.setBool(_keyIsHiragana, value);
+      _preferences.then((prefs) => prefs.setBool(_keyIsHiragana, value));
 
   @override
   Future<void> setIsMapMode(bool value) =>
-      _preferences.setBool(_keyIsMapMode, value);
+      _preferences.then((prefs) => prefs.setBool(_keyIsMapMode, value));
 }

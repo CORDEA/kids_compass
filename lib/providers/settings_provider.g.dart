@@ -24,13 +24,10 @@ final class SettingsProvider
         dependencies: const <ProviderOrFamily>[preferencesRepositoryProvider],
         $allTransitiveDependencies: const <ProviderOrFamily>[
           SettingsProvider.$allTransitiveDependencies0,
-          SettingsProvider.$allTransitiveDependencies1,
         ],
       );
 
   static const $allTransitiveDependencies0 = preferencesRepositoryProvider;
-  static const $allTransitiveDependencies1 =
-      PreferencesRepositoryProvider.$allTransitiveDependencies0;
 
   @override
   String debugGetCreateSourceHash() => _$settingsHash();
@@ -48,7 +45,7 @@ final class SettingsProvider
   }
 }
 
-String _$settingsHash() => r'60462a24a0246696bddf45fcc9daa1021e8c6bc4';
+String _$settingsHash() => r'0669d641bb7e2c27e420e3d1b8796984bea7eef8';
 
 abstract class _$Settings extends $Notifier<SettingsState> {
   SettingsState build();
