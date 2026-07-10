@@ -1,0 +1,7 @@
+[tools]
+flutter = "3.44.6"
+java = "zulu-17"
+ruby = "4.0.4"
+
+[settings.ruby]
+compile = false
