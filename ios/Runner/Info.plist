@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Compass</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>コンパスが もっと 正しく なるよ。</string>
 	<key>CFBundleExecutable</key>
