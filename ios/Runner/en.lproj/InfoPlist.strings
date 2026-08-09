@@ -1,1 +1,2 @@
-CFBundleDisplayName = "Kids Compass";
+CFBundleDisplayName = "KidsCompass";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Used to improve compass accuracy.";
