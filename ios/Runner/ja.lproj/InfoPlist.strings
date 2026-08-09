@@ -1,4 +1,4 @@
-CFBundleDisplayName = "コンパス";
-CFBundleName = "コンパス";
+CFBundleDisplayName = "こどもコンパス";
+CFBundleName = "こどもコンパス";
 NSLocationWhenInUseUsageDescription = "コンパスが もっと 正しく なるよ。";
 NSLocationAlwaysAndWhenInUseUsageDescription = "コンパスが もっと 正しく なるよ。";
