@@ -9,9 +9,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Compass</string>
+	<string>Kids Compass</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>コンパスが もっと 正しく なるよ。</string>
+	<string>Used to improve compass accuracy.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

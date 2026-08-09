@@ -1,2 +1,3 @@
 CFBundleDisplayName = "コンパス";
 CFBundleName = "コンパス";
+NSLocationWhenInUseUsageDescription = "コンパスが もっと 正しく なるよ。";
