@@ -2,7 +2,7 @@ name: compass
 description: "A distraction-free compass app for Japanese elementary school students."
 publish_to: 'none'
 
-version: 1.0.0
+version: 1.1.0
 
 environment:
   sdk: ^3.11.1
