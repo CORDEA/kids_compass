@@ -15,6 +15,7 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isHiragana = ref.watch(settingsProvider.select((s) => s.isHiragana));
     final strings = AppStrings.of(AppLocalizations.of(context)!, isHiragana);
+    final isJapanese = Localizations.localeOf(context).languageCode == 'ja';
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -32,14 +33,16 @@ class SettingsScreen extends ConsumerWidget {
                     const SizedBox(height: 32),
                     _SectionLabel(label: strings.settingsSectionGeneral),
                     const SizedBox(height: 16),
-                    _LanguageCard(
-                      isHiragana: isHiragana,
-                      strings: strings,
-                      onChanged: (value) => ref
-                          .read(settingsProvider.notifier)
-                          .setIsHiragana(value),
-                    ),
-                    const SizedBox(height: 16),
+                    if (isJapanese) ...[
+                      _LanguageCard(
+                        isHiragana: isHiragana,
+                        strings: strings,
+                        onChanged: (value) => ref
+                            .read(settingsProvider.notifier)
+                            .setIsHiragana(value),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
                     _LocationCard(
                       strings: strings,
                       onEnable: () async {

@@ -7,7 +7,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-Widget buildTestApp({required Widget child}) {
+Widget buildTestApp({
+  required Widget child,
+  Locale locale = const Locale('ja'),
+}) {
   return ProviderScope(
     overrides: [
       compassHeadingProvider.overrideWith((ref) => Stream.value(0.0)),
@@ -22,6 +25,7 @@ Widget buildTestApp({required Widget child}) {
     ],
     child: MaterialApp(
       theme: AppTheme.light(),
+      locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
